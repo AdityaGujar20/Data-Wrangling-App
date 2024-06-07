@@ -1,0 +1,96 @@
+body {
+  background-color: lightblue;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  color: #696d98;
+  text-align: center;
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+.centered-bold-text {
+  text-align: center;
+  font-weight: bold;
+  color: rgb(228, 108, 104);
+  margin: 20px 0;
+
+}
+
+.css-1y4p8pa {
+  border: 2px solid #696d98 !important;
+  padding: 10px !important;
+  border-radius: 10px !important;
+}
+
+.css-1lcbmhc {
+  background-color: #f8f8f8 !important;
+  border-right: 2px solid #696d98 !important;
+  padding: 10px !important;
+}
+
+.stButton > button {
+  background-color: #696d98;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 20px;
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.stButton > button:hover {
+  background-color: #696d98;
+}
+
+.stDataFrame {
+  border: 2px solid #696d98;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 20px auto;
+  width: fit-content;
+  max-width: 90%;
+}
+
+.stDataFrame table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  margin: auto;
+}
+
+.stDataFrame th,
+.stDataFrame td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.stDataFrame th {
+  background-color: #696d98;
+  color: white;
+}
+
+.css-18e3th9 {
+  justify-content: center;
+}
+
+.css-1v0mbdj {
+  padding: 30px;
+}
+
+.stMarkdown {
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+hr {
+  height: 10px;
+  border: none;
+  background-color: black;
+}
+
