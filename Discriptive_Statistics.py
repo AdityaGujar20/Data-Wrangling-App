@@ -1,5 +1,9 @@
 import streamlit as st
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import plotly.express as px
+from wordcloud import WordCloud
 
 def load_custom_css(file_name):
     with open(file_name) as f:
@@ -36,12 +40,49 @@ if upload_file is not None:
 
     st.write("<div class='centered-bold-text'>Descriptive Statistics</div>", unsafe_allow_html=True)
     st.write(df.describe())
+    st.write("<hr>", unsafe_allow_html=True)    
+    
+    st.write("<div class = 'centered-bold-text'>Pearson's Correlation Heatmap</div>", unsafe_allow_html=True)   
+    st.markdown("**Understanding Correlation:**")
+    st.markdown("- **1**: Strong positive correlation")
+    st.markdown("- **0**: No correlation")
+    st.markdown("- **-1**: Strong negative correlation")
+    numeric_df = df.select_dtypes(include='number')
+    corr_matrix = numeric_df.corr().round(2)
+    fig = px.imshow(corr_matrix, 
+                    x=corr_matrix.index, 
+                    y=corr_matrix.columns, 
+                    color_continuous_scale='Viridis',
+                    labels=dict(color="Correlation")
+                )
+    fig.update_layout(
+        width=800,
+        height=600,
+        title='Correlation Heatmap',
+        title_x=0.5, 
+        xaxis_title='Features',
+        yaxis_title='Features',
+        font=dict(size=12), 
+        coloraxis_colorbar=dict(
+            title='Correlation',
+            tickvals=[-1, 0, 1],  
+            ticktext=['-1 (Negative)', '0 (None)', '1 (Positive)'],
+        )
+    )
+    st.plotly_chart(fig)
     st.write("<hr>", unsafe_allow_html=True)
     
-    st.write("<div class = 'centered-bold-text'>Pearson's Correlation</div>", unsafe_allow_html=True)
-    st.write("1 means there is a positive correlation")
-    st.write("0 means there is no correlation")
-    st.write("-1 means there is a negatively correlation")
-    numeric_df = df.select_dtypes(include='number')
-    st.write(numeric_df.corr())
-    st.write("<hr>", unsafe_allow_html=True)
+    # Interactive Scatter Plot
+    st.write("<div class = 'centered-bold-text'>Interactive Scatter Plot</div>", unsafe_allow_html=True)
+    x_axis = st.selectbox('Select X-axis:', options=numeric_df.columns, index=0)
+    y_axis = st.selectbox('Select Y-axis:', options=numeric_df.columns, index=1)
+    fig = px.scatter(data_frame=df, x=x_axis, y=y_axis)
+    fig.update_layout(
+        width=800,
+        height=600,
+        xaxis_title=x_axis,
+        yaxis_title=y_axis,
+        font=dict(size=12),
+    )
+    st.plotly_chart(fig)
+    st.write("<hr>", unsafe_allow_html = True)
