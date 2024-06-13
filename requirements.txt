@@ -1,3 +1,7 @@
 numpy
 pandas
+seaborn
+matplotlib
 streamlit
+plotly
+wordcloud
