@@ -16,12 +16,14 @@ upload_file = st.file_uploader(label = '', type='.csv')
 st.write("<hr>", unsafe_allow_html=True)
 
 if upload_file is not None:
-        
+    
+    # Original Data Snapshot
     st.write("<div class='centered-bold-text'>Original Data Snapshot</div>", unsafe_allow_html=True)
     df = pd.read_csv(upload_file)
     st.write(df.sample(5))
     st.write("<hr>", unsafe_allow_html=True)
 
+    # Data Shape
     st.write("<div class='centered-bold-text'>Shape of the data</div>", unsafe_allow_html=True)
     shape = df.shape
     shape_dic = {
@@ -31,16 +33,19 @@ if upload_file is not None:
     st.dataframe(shape_dic)
     st.write("<hr>", unsafe_allow_html=True)
 
+    # Missing Values
     st.write("<div class='centered-bold-text'>Total number of missing values in each column</div>", unsafe_allow_html=True)
     null_df = df.isnull().sum().reset_index()
     null_df.columns = ['Column Name', 'Number of Null Values']
     st.dataframe(null_df.set_index('Column Name'))
     st.write("<hr>", unsafe_allow_html=True)
 
+    # Discriptive Statistics
     st.write("<div class='centered-bold-text'>Descriptive Statistics</div>", unsafe_allow_html=True)
     st.write(df.describe())
     st.write("<hr>", unsafe_allow_html=True)    
     
+    # Correlation
     st.write("<div class = 'centered-bold-text'>Pearson's Correlation Heatmap</div>", unsafe_allow_html=True)   
     st.markdown("**Understanding Correlation:**")
     st.markdown("- **1**: Strong positive correlation")
@@ -85,3 +90,7 @@ if upload_file is not None:
     )
     st.plotly_chart(fig)
     st.write("<hr>", unsafe_allow_html = True)
+    
+    # Should I shift th word cloud code here??
+    
+    
